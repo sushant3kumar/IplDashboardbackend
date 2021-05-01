@@ -1,9 +1,12 @@
 package com.example.demo.Model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Team {
@@ -15,6 +18,15 @@ public class Team {
     private String teamName;
     private long totalMatches;
 
+    @Transient
+    private List<Match> latestMatches;
+
+    public List<Match> getLatestMatches() {
+        return latestMatches;
+    }
+    public void setLatestMatches(List<Match> latestMatches) {
+        this.latestMatches = latestMatches;
+    }
     public long getId() {
         return id;
     }
@@ -46,6 +58,10 @@ public class Team {
     public Team(String teamName, long totalMatches) {
         this.teamName = teamName;
         this.totalMatches = totalMatches;
+    }
+    public Team()
+    {
+        
     }
 
     
